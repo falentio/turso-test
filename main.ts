@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS counter(
   id text primary key,
   n int not null
 );
-`)
+`).catch(() => {})
 
 await client.execute(`
 INSERT INTO counter values('test', 0)`)
