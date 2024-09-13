@@ -18,5 +18,6 @@ INSERT INTO counter values('test', 0)`)
 
 Deno.serve(async () => {
   const result = await client.execute(`update counter set n = n + 1 where id = 'test'`)
+  console.log(result)
   return Response.json(result)
 })
