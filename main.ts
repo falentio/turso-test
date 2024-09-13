@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS counter(
 await client.execute(`
 INSERT INTO counter values('test', -1)`).catch(() => {})
 Deno.serve(async () => {
-  const result = await client.execute(`update counter set n = n + 1 where id = 'test' returning *`)
+  const { rows: [[,n]]} = await client.execute(`select * from counter where id = 'test'`)
+  const result = await client.execute(`update counter set n = ${n} + 1 where id = 'test' returning *`)
   return Response.json(result)
 })
