@@ -11,10 +11,10 @@ CREATE TABLE IF NOT EXISTS counter(
   id text primary key,
   n int not null
 );
-`).catch(() => {})
+`)
 
 await client.execute(`
-INSERT INTO counter values('test', -1)`)
+INSERT INTO counter values('test', -1)`).catch(() => {})
 
 Deno.serve(async () => {
   const result = await client.execute(`update counter set n = n + 1 where id = 'test'`)
